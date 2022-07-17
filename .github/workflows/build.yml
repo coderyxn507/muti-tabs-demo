@@ -23,10 +23,10 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cahce: yarn
 
-    - name: Build
-      run: |
-        yarn
-        yarn build
+    # - name: Build
+    #   run: |
+    #     yarn
+    #     yarn build
 
     - name: Result
       run: |
@@ -44,7 +44,8 @@ jobs:
         # Remote port
         REMOTE_PORT: 22 # optional, default is 22
         # Source directory
-        SOURCE: dist # optional, default is
+        # SOURCE: dist # optional, default is
+        SOURCE: config/
         # Target directory
         TARGET: /root/workspace/yxn # optional, default is /home/REMOTE_USER/
         # Arguments to pass to rsync
