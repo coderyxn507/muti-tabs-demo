@@ -21,14 +21,16 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        # cahce: yarn
+        cahce: yarn
 
     - name: Build
       run: |
+        yarn
+        yarn build
+
+    - name: Result
+      run: |
         ls -al
-        npm install
-        npm run build
-        # npx webpack
         
     - name: SSH Deploy
       uses: easingthemes/ssh-deploy@v2.2.11
