@@ -8,8 +8,6 @@ export default function KeepAliveTabs() {
   const { getCachingNodes } = useAliveController();
   const cachingNodes = getCachingNodes();
 
-  console.log(cachingNodes);
-
   return (
     <ul className={styles['alive-tabs']}>
       {cachingNodes.map((node, idx) => (

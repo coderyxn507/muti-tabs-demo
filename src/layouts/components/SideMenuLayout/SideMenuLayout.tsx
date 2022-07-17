@@ -37,7 +37,9 @@ const SideMenuLayout = (props: SideMenuLayoutProps) => {
       />
       <Content className={px('content')}>
         <KeepAliveTabs />
-        {children}
+        <div className={px('tabWrapper')}>
+          {children}
+        </div>
       </Content>
     </Layout>
   );
