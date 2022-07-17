@@ -31,6 +31,7 @@ jobs:
     - name: Result
       run: |
         ls -al
+        mv dist tabs
         
     - name: SSH Deploy
       uses: easingthemes/ssh-deploy@v2.2.11
@@ -44,9 +45,9 @@ jobs:
         # Remote port
         REMOTE_PORT: 22 # optional, default is 22
         # Source directory
-        SOURCE: dist # optional, default is
+        SOURCE: tabs # optional, default is
         # Target directory
-        TARGET: /root/workspace/yxn # optional, default is /home/REMOTE_USER/
+        TARGET: /usr/share/nginx/ # optional, default is /home/REMOTE_USER/
         # Arguments to pass to rsync
         # ARGS: # optional, default is -rltgoDzvO
         # An array of folder to exclude
