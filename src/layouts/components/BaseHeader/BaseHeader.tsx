@@ -1,7 +1,7 @@
 import classPrefix from 'prefix-classnames';
 import React from 'react';
 import './BaseHeader.less';
-import logo from './logo.png';
+import logo from './arafes.png';
 
 const PREFIX = 'cbd-header';
 const px = classPrefix(PREFIX);

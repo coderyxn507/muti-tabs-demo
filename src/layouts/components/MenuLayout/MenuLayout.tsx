@@ -79,7 +79,7 @@ const MenuLayout = (props: MenuLayoutProps) => {
       <Header className={px('header')}>
         <BaseHeader>
           <Logo />
-          <Title>Whale Cloud</Title>
+          <Title>MultiTabs侵删</Title>
           <HSpace size={50} />
           <TopMenu
             selectedKeys={topMenuKeys}
