@@ -92,7 +92,7 @@ const MenuLayout = (props: MenuLayoutProps) => {
         </BaseHeader>
       </Header>
       <Content className={px('content')}>
-        {subMenu ? <SideMenuLayout {...props} menuData={subMenu} /> : children}
+        <SideMenuLayout {...props} menuData={menuData} />
       </Content>
     </Layout>
   );
