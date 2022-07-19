@@ -26,10 +26,14 @@ export default function Tab({ node }) {
       }}
     >
       {node.path}
-      <CloseCircleOutlined
-        className={styles['close-btn']}
-        onClick={dropTab}
-      />
+      {
+        node.name !== 'home' && (
+          <CloseCircleOutlined
+            className={styles['close-btn']}
+            onClick={dropTab}
+          />
+        )
+      }
     </li>
   );
 }
