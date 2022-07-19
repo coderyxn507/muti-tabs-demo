@@ -9,9 +9,10 @@ export default defineConfig({
   ignoreMomentLocale: true,
   theme,
   proxy: {
-    '/api': {
-      target: 'http://server-ip:8080/',
+    '/api/': {
+      target: 'https://yxntab.vecchio.top/',
       changeOrigin: true,
+      secure: false,
       // 'pathRewrite': { '^/api' : '' },
     },
   },

@@ -13,18 +13,16 @@ export default [
     text: '子页面',
     children: [
       {
-        text: '子菜单',
-        icon: <FileOutlined />,
-        children: [
-          {
-            key: '/sub/sub1',
-            text: '子页面1',
-          },
-          {
-            key: '/sub/sub2',
-            text: '子页面2',
-          },
-        ],
+        key: '/sub/sub1',
+        text: '子页面1',
+      },
+      {
+        key: '/sub/sub2',
+        text: '子页面2',
+      },
+      {
+        key: '/sub/interface',
+        text: 'useEffect中测试接口页面',
       },
     ],
   },
