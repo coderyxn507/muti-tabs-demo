@@ -22,7 +22,7 @@ export const useDropTab = () => {
             if (history.location.pathname === i.path && i.name === dropName) isCloseSelf = true;
             return i.name !== dropName;
           })
-          .shift().path;
+          .shift()?.path || '/home';
 
       if (isCloseSelf) {
         history.push(goPath);
