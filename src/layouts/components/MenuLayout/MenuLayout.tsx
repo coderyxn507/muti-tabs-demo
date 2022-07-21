@@ -4,13 +4,14 @@ import React, { useMemo } from 'react';
 import { history, useLocation } from 'umi';
 import Avatar from '../Avatar';
 import BaseHeader, { HSpace, Item, Logo, Title } from '../BaseHeader';
+import Header from '../Header';
 import SideMenuLayout from '../SideMenuLayout';
 import { SideMenuData } from '../SideMenuLayout/CollapsibleSideMenu/SideMenu/SideMenu';
 import TopMenu from '../TopMenu';
 import { TopMenuData } from '../TopMenu/TopMenu';
 import './MenuLayout.less';
 
-const { Header, Content } = Layout;
+const { Content } = Layout;
 
 const PREFIX = 'base-layout';
 const px = classPrefix(PREFIX);
@@ -75,22 +76,7 @@ const MenuLayout = (props: MenuLayoutProps) => {
 
   return (
     <Layout className={px('root')}>
-      {/* 顶栏 */}
-      <Header className={px('header')}>
-        <BaseHeader>
-          <Logo />
-          <Title>MultiTabs侵删</Title>
-          <HSpace size={50} />
-          <TopMenu
-            selectedKeys={topMenuKeys}
-            data={topMenu}
-            onClick={handleMenuClick}
-            style={{ flex: 1 }}
-          />
-          <Item text>消息</Item>
-          <Avatar />
-        </BaseHeader>
-      </Header>
+      <Header />
       <Content className={px('content')}>
         <SideMenuLayout {...props} menuData={menuData} />
       </Content>

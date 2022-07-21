@@ -27,4 +27,8 @@ export default defineConfig({
         },
       });
   },
+  extraBabelPlugins: [
+    // 帮助 react-activation 在运行时按渲染位置生成唯一的缓存 id 标识  不生效问题先暂缓解决！
+    // ["react-activation/babel", { }, 'react-activation/babel']
+  ],
 });
