@@ -1,7 +1,9 @@
 import moment from 'moment';
 import { useEffect, useState } from 'react';
 
-/** 防止凌晨日期增加问题 */
+/** 防止凌晨日期增加问题
+ * @returns 返回当天日期
+ */
 export const useDate = () => {
   // '2022-7-21 23:59:58' 测试数据
   const [startTime, setStartTime] = useState(moment());
