@@ -9,7 +9,9 @@ const initState = {
   topMenu: [],
   // 侧边菜单数据
   sideMenu: [],
-  // 顶部菜单与侧边菜单的数据映射关系
+  // 侧边菜单数据, topMenuKey 与真实数据的映射
+  sideMenuTopKeyMap: {},
+  // 顶部菜单与侧边菜单的数据包含关系
   menuMap: {},
   // 处理后拍平 带路径的数据
   flatMenu: [],
@@ -32,9 +34,12 @@ export default {
         label: i,
       }));
       // 默认选中一级菜单第一项
-      const topMenuKey = topMenu?.[0]?.key;
+      const topMenuKey = topMenu[0]?.key;
       // 侧边(二级)菜单
       const sideMenu = mockMenuData.filter(i => menuMap[topMenuKey]?.includes?.(i.menuName)) || [];
+      const sideMenuTopKeyMap = {
+        [topMenuKey]: sideMenu,
+      };
 
       yield put({
         type: 'update',
@@ -43,6 +48,7 @@ export default {
           topMenu,
           menuMap,
           sideMenu,
+          sideMenuTopKeyMap,
           topMenuKey,
         },
       });
@@ -61,16 +67,36 @@ export default {
       topMenuKey: payload,
     }),
 
-    /** 更新侧边栏菜单数据
+    /** 更新侧边栏菜单数据和侧边菜单数据映射
      *  @params payload 值为topMaenuKey
      */
     updateSideMenu: (state, { payload }) => {
-      const { menuData, topMenuKey, menuMap } = state;
-      const sideMenu = menuData.filter(i => menuMap[payload || topMenuKey]?.includes?.(i.menuName));
+      const { menuData, topMenuKey, menuMap, sideMenuTopKeyMap: oldData } = state;
+      // 优先使用payload的key
+      const key = payload || topMenuKey;
+
+      // 需要更新的值
+      let changePayload: any = {
+        sideMenu: oldData[key],
+      };
+
+      if (!changePayload.sideMenu) {
+        const sideMenu = menuData.filter(i => menuMap[key]?.includes?.(i.menuName));
+
+        const sideMenuTopKeyMap = {
+          ...oldData,
+          [key]: sideMenu,
+        };
+
+        changePayload = {
+          sideMenu,
+          sideMenuTopKeyMap,
+        };
+      }
 
       return {
         ...state,
-        sideMenu,
+        ...changePayload,
       };
     },
   },

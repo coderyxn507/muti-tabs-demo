@@ -11,7 +11,7 @@ interface IProps {
   [key: string]: any;
 }
 const TopMenu: React.FC<IProps> = (props) => {
-  const { topMenu, topMenuKey, dispatch, className = '' } = props;
+  const { topMenu, topMenuKey, sideMenu, dispatch, className = '' } = props;
 
 
   // 暂时在这儿初始化 请求数据
@@ -27,6 +27,8 @@ const TopMenu: React.FC<IProps> = (props) => {
       type: 'layout/updateTopMenuKey',
       payload: e.key,
     });
+
+    // 更新当前的侧边数据
     dispatch({
       type: 'layout/updateSideMenu',
       payload: e.key,
@@ -49,4 +51,5 @@ const TopMenu: React.FC<IProps> = (props) => {
 export default connect((state: ConnectState) => ({
   topMenu: state.layout.topMenu,
   topMenuKey: state.layout.topMenuKey,
+  sideMenu: state.layout.sideMenu,
 }))(TopMenu);

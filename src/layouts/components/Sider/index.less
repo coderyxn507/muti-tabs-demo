@@ -1,0 +1,46 @@
+.root {
+  position: relative;
+  .controlZone {
+    color: #fff;
+    padding-left: 24px;
+    cursor: pointer;
+    span {
+      margin-right: 10px;
+    }
+  }
+  .suspensionMenu {
+    width: 400px;
+    height: 100%;
+    background: #fff;
+    padding: 0;
+    top: 0 !important;
+
+    .leafItem {
+      border-bottom: 1px solid #E6E8E9;
+      padding: 0 16px;
+      margin-top: 16px;
+    }
+    .leafCtn {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .leafCtn > span {
+      margin-top: 16px;
+    }
+    :global {
+      .ant-popover-arrow {
+        display: none;
+      }
+      .ant-popover-inner {
+        box-shadow: none;
+      }
+      .ant-popover-inner-content {
+        padding: 0;
+      }
+    }
+  }
+  >div:last-child {
+    height: 100% !important;
+    left: 200px !important;
+  }
+}
