@@ -4,14 +4,14 @@ import classnames from 'classnames';
 import styleSelf from './style.less';
 
 export interface IconfontPropsType extends React.HTMLAttributes<HTMLElement> {
-    type: string;
+    type?: string;
     title?: string;
     onClick?(event: React.MouseEvent): void;
 }
 
 export const Iconfont: React.FC<IconfontPropsType> = (props) => {
   const {
-    type,
+    type = '',
     style,
     title,
     className = 'iconbanbenhuitui',

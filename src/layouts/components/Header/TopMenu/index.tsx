@@ -11,7 +11,8 @@ interface IProps {
   [key: string]: any;
 }
 const TopMenu: React.FC<IProps> = (props) => {
-  const { topMenu, dispatch, className = '' } = props;
+  const { topMenu, topMenuKey, dispatch, className = '' } = props;
+
 
   // 暂时在这儿初始化 请求数据
   useEffect(() => {
@@ -20,13 +21,26 @@ const TopMenu: React.FC<IProps> = (props) => {
     });
   }, []);
 
+  // 选中事件
+  const onClick = (e) => {
+    dispatch({
+      type: 'layout/updateTopMenuKey',
+      payload: e.key,
+    });
+    dispatch({
+      type: 'layout/updateSideMenu',
+      payload: e.key,
+    });
+  };
+
   return (
     <div className={classNames(styles.root, className)}>
       <Menu
         theme="dark"
-        defaultSelectedKeys={['1']}
+        selectedKeys={[topMenuKey]}
         mode="horizontal"
         items={topMenu}
+        onClick={onClick}
       />
     </div>
   );
@@ -34,4 +48,5 @@ const TopMenu: React.FC<IProps> = (props) => {
 
 export default connect((state: ConnectState) => ({
   topMenu: state.layout.topMenu,
+  topMenuKey: state.layout.topMenuKey,
 }))(TopMenu);

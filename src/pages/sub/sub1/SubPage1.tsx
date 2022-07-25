@@ -2,7 +2,7 @@ import { Button, Input } from 'antd';
 import { history } from 'umi';
 import React from 'react';
 import { KeepAlive } from 'react-activation';
-import { useDropTab } from '@/utils/useDropTab';
+import { useDropTab } from '@/hooks/useDropTab';
 import styles from './SubPage1.less';
 
 const SubPage1 = () => {

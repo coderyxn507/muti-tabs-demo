@@ -1,85 +1,35 @@
 import { Layout } from 'antd';
-import classPrefix from 'prefix-classnames';
-import React, { useMemo } from 'react';
-import { history, useLocation } from 'umi';
-import Avatar from '../Avatar';
-import BaseHeader, { HSpace, Item, Logo, Title } from '../BaseHeader';
+import React from 'react';
 import Header from '../Header';
-import SideMenuLayout from '../SideMenuLayout';
+import KeepAliveTabs from '../KeepAliveTabs';
 import { SideMenuData } from '../SideMenuLayout/CollapsibleSideMenu/SideMenu/SideMenu';
-import TopMenu from '../TopMenu';
-import { TopMenuData } from '../TopMenu/TopMenu';
-import './MenuLayout.less';
+import Sider from '../Sider';
+import styles from './MenuLayout.less';
 
 const { Content } = Layout;
 
-const PREFIX = 'base-layout';
-const px = classPrefix(PREFIX);
-
 type MenuData = SideMenuData;
-
-const findPrefixSelectedIndex = (menu: MenuData[] = [], key = ''): number[] | boolean => {
-  for (let i = 0; i < menu.length; i += 1) {
-    const item = menu[i];
-    if (key === item.key) {
-      return [i];
-    }
-    if (Array.isArray(item.children)) {
-      const res = findPrefixSelectedIndex(item.children, key);
-      if (Array.isArray(res)) {
-        return [i, ...res];
-      }
-    }
-  }
-  return false;
-};
-
-const handleMenuClick = (item) => {
-  if (item.key) {
-    history.push(item.key);
-  }
-};
 
 export interface MenuLayoutProps {
   menuData: MenuData[];
-  children?: React.ReactElement;
+  children?: any;
 }
 
 const MenuLayout = (props: MenuLayoutProps) => {
   const { children, menuData } = props;
 
-  const location = useLocation();
-
-  /* 根据路由找出当前匹配的菜单 */
-  const matchedMenuIndex = useMemo(() => findPrefixSelectedIndex(menuData, location.pathname), [
-    menuData,
-    location.pathname,
-  ]);
-
-  /* 找出顶级菜单的key和子菜单 */
-  const { key: topMenuKey, children: subMenu } = useMemo<{
-    key?: string;
-    children?: MenuData[];
-  }>(() => {
-    if (Array.isArray(matchedMenuIndex)) {
-      return menuData[matchedMenuIndex[0]];
-    }
-    return {};
-  }, [menuData, matchedMenuIndex]);
-
-  const topMenuKeys = useMemo(() => (topMenuKey ? [topMenuKey] : []), []);
-
-  const topMenu = useMemo(
-    () => menuData.map(({ children: nouse, ...item }) => item as TopMenuData),
-    [menuData],
-  );
-
   return (
-    <Layout className={px('root')}>
+    <Layout className={styles.root}>
       <Header />
-      <Content className={px('content')}>
-        <SideMenuLayout {...props} menuData={menuData} />
-      </Content>
+      <Layout>
+        <Sider />
+        <Content>
+          <KeepAliveTabs />
+          <div className={styles.tabWrapper}>
+            {children}
+          </div>
+        </Content>
+      </Layout>
     </Layout>
   );
 };

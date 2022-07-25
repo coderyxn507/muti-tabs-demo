@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory, useLocation } from 'umi';
 import { CloseCircleOutlined } from '@ant-design/icons';
-import { useDropTab } from '@/utils/useDropTab';
+import { useDropTab } from '@/hooks/useDropTab';
 
 import styles from './index.less';
 
